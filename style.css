@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', sans-serif;
+  background-color: #f2f2f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.widget {
+  background: white;
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 300px;
+}
+
+.message {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.countdown {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.countdown div {
+  flex: 1;
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.countdown span {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.countdown label {
+  font-size: 0.75rem;
+  color: #666;
+}
