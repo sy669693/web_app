@@ -1,4 +1,4 @@
-const CACHE_NAME = 'love-countdown-v2';
+const CACHE_NAME = 'love-countdown-v3';
 const URLS_TO_CACHE = [
   '/',
   '/index.html',
