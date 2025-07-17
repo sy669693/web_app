@@ -1,69 +1,82 @@
+/* Reset & Base Styles */
 body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', sans-serif;
   background-color: #f2f2f7;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
-.widget {
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Main Countdown Area */
+.countdown-focus {
   background: white;
   border-radius: 30px;
-  padding: 30px;
+  padding: 40px 20px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 300px;
+  max-width: 400px;
+  width: 90%;
 }
 
-.message {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+.event-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 15px;
   color: #333;
+  outline: none;
 }
 
 .countdown {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.countdown div {
-  flex: 1;
-  background: #f9f9f9;
-  border-radius: 15px;
-  padding: 10px;
-}
-
-.countdown span {
-  display: block;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
-}
-
-.countdown label {
-  font-size: 0.75rem;
-  color: #666;
-}
-
-.main-countdown {
-  background-color: #fff;
-  border: 2px solid #f06292;
-  border-radius: 20px;
-  padding: 15px;
-  margin-bottom: 10px;
-}
-
-.secondary-countdown {
-  background-color: #f9f9f9;
-  border-radius: 15px;
-  padding: 10px;
-  font-size: 0.9rem;
   color: #555;
 }
 
+/* Navigation Bubbles */
+.nav {
+  position: absolute;
+  width: 100%;
+  bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+
+.nav-bubble {
+  background: #f9f9f9;
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  color: #555;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 40%;
+  text-align: center;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.nav-bubble:hover {
+  background: #e0e0e0;
+}
+
+/* Fade transition */
 .fade-out {
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -73,4 +86,3 @@ body {
 #event-title {
   transition: opacity 0.2s ease;
 }
-
