@@ -64,3 +64,13 @@ body {
   color: #555;
 }
 
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#main-countdown,
+#event-title {
+  transition: opacity 0.2s ease;
+}
+
