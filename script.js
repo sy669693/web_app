@@ -1,45 +1,74 @@
-// Replace single date with multiple
-const targetDates = [
+// List of events
+const events = [
   { name: "Next Meetup", date: new Date("2025-07-24T00:00:00") },
   { name: "Trip to Mountains", date: new Date("2025-08-15T18:00:00") },
   { name: "Anniversary", date: new Date("2025-12-25T00:00:00") }
 ];
 
-// Sort dates to find the closest future one
-function getUpcomingEvents() {
+let currentIndex = 0;
+
+function updateCountdownView(index) {
+  const countdown = document.getElementById("main-countdown");
+  const title = document.getElementById("event-title");
+  const prevBubble = document.getElementById("prev-bubble");
+  const nextBubble = document.getElementById("next-bubble");
+
+  // Fade out animation
+  countdown.classList.add("fade-out");
+  title.classList.add("fade-out");
+
+  setTimeout(() => {
+    title.innerText = events[index].name;
+
+    // Update nav bubbles
+    prevBubble.textContent = index > 0 ? `earlier... ${events[index - 1].name}` : "";
+    nextBubble.textContent = index < events.length - 1 ? `and then... ${events[index + 1].name}` : "";
+
+    countdown.classList.remove("fade-out");
+    title.classList.remove("fade-out");
+  }, 200); // duration of fade-out
+}
+
+function updateTimer() {
+  const countdown = document.getElementById("main-countdown");
+  const target = events[currentIndex].date;
   const now = new Date();
-  return targetDates
-    .filter(event => event.date > now)
-    .sort((a, b) => a.date - b.date);
+  const diff = target - now;
+
+  if (diff < 0) {
+    countdown.innerText = "Event passed!";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-// Format and display all events
-function updateCountdowns() {
-  const countdownContainer = document.querySelector(".countdown");
-  countdownContainer.innerHTML = ""; // Clear all children
+// Navigation event handlers
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("prev-bubble").onclick = () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateCountdownView(currentIndex);
+    }
+  };
+  document.getElementById("next-bubble").onclick = () => {
+    if (currentIndex < events.length - 1) {
+      currentIndex++;
+      updateCountdownView(currentIndex);
+    }
+  };
 
-  const events = getUpcomingEvents();
+  updateCountdownView(currentIndex);
+  updateTimer();
+  setInterval(updateTimer, 1000);
 
-  events.forEach((event, index) => {
-    const diff = event.date - new Date();
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(diff / (1000 * 60 * 60) % 24);
-    const minutes = Math.floor(diff / (1000 * 60) % 60);
-    const seconds = Math.floor(diff / 1000 % 60);
-
-    const div = document.createElement("div");
-    div.className = index === 0 ? "main-countdown" : "secondary-countdown";
-    div.innerHTML = `
-      <strong>${event.name}</strong><br>
-      <span>${days}d ${hours}h ${minutes}m ${seconds}s</span>
-    `;
-    countdownContainer.appendChild(div);
-  });
-}
-
-setInterval(updateCountdowns, 1000);
-updateCountdowns();
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js');
-}
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
+  }
+});
