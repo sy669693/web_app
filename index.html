@@ -10,12 +10,13 @@
 </head>
 <body>
   <div class="widget">
-    <h1 class="message">I can't wait to see you too ❤️</h1>
-    <div class="countdown">
-      <div><span id="days">0</span><label>Days</label></div>
-      <div><span id="hours">0</span><label>Hours</label></div>
-      <div><span id="minutes">0</span><label>Minutes</label></div>
-      <div><span id="seconds">0</span><label>Seconds</label></div>
+    <div class="countdown-focus">
+      <div contenteditable="true" id="event-title" class="event-title">Next Meetup</div>
+      <div class="countdown" id="main-countdown">Loading...</div>
+    </div>
+    <div class="nav">
+      <div id="prev-bubble" class="nav-bubble left"></div>
+      <div id="next-bubble" class="nav-bubble right"></div>
     </div>
   </div>
 </body>
