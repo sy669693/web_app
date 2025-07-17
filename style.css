@@ -47,3 +47,20 @@ body {
   font-size: 0.75rem;
   color: #666;
 }
+
+.main-countdown {
+  background-color: #fff;
+  border: 2px solid #f06292;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.secondary-countdown {
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
