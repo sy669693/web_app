@@ -18,14 +18,17 @@ function updateCountdownView(index) {
   title.classList.add("fade-out");
 
   setTimeout(() => {
+    // Update content
     title.innerText = events[index].name;
-
-    // Update nav bubbles
     prevBubble.textContent = index > 0 ? `earlier... ${events[index - 1].name}` : "";
     nextBubble.textContent = index < events.length - 1 ? `and then... ${events[index + 1].name}` : "";
 
+    // Remove animation
     countdown.classList.remove("fade-out");
     title.classList.remove("fade-out");
+
+    // Start/resync timer for new event
+    updateTimer();
   }, 200); // duration of fade-out
 }
 
@@ -48,7 +51,6 @@ function updateTimer() {
   countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-// Navigation event handlers
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("prev-bubble").onclick = () => {
     if (currentIndex > 0) {
@@ -56,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       updateCountdownView(currentIndex);
     }
   };
+
   document.getElementById("next-bubble").onclick = () => {
     if (currentIndex < events.length - 1) {
       currentIndex++;
@@ -63,11 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  updateCountdownView(currentIndex);
-  updateTimer();
+  updateCountdownView(currentIndex); // includes timer now
   setInterval(updateTimer, 1000);
 
-  // Register service worker
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('service-worker.js');
   }
