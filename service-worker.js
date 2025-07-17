@@ -1,13 +1,14 @@
 const CACHE_NAME = 'love-countdown-v3';
 const URLS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/script.js',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png'
+  // '/',
+  // '/index.html',
+  // '/style.css',
+  // '/script.js',
+  // '/manifest.json',
+  // '/icon-192.png',
+  // '/icon-512.png'
 ];
+
 
 // Install event: cache files
 self.addEventListener('install', event => {
